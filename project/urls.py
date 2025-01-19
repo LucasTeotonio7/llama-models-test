@@ -16,11 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
+@api_view(["GET"])
+def test_view(request):
+    return JsonResponse({"message": "Hello, this is a test route!"})
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', test_view, name='test'),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     path('docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
