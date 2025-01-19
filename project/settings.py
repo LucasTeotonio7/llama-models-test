@@ -112,6 +112,43 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+
+SPECTACULAR_SETTINGS = {
+    'DEFAULT_GENERATOR_CLASS': 'drf_spectacular.generators.SchemaGenerator',
+    'TITLE': 'Models llm AI API',
+    'DESCRIPTION': 'api to test llm models AI.',
+    'CONTACT': {
+        'name': 'Lucas Teotonio',
+        'email': 'lucas-santos-teo@hotmail.com'
+    },
+    'VERSION': '1.0.0',
+    # # include schema enpoint into schema
+    'SERVE_INCLUDE_SCHEMA': False,
+    # list of authentication/permission classes for spectacular's views.
+    'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
+    # # None will default to DRF's AUTHENTICATION_CLASSES
+    'SERVE_AUTHENTICATION': None,
+    # Oauth2 related settings. used for example by django-oauth2-toolkit.
+    # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#oauth-flows-object
+    'OAUTH2_FLOWS': ['clientCredentials'],
+    'OAUTH2_TOKEN_URL': '/oauth/token/',
+    'OAUTH2_AUTHORIZATION_URL': '/oauth/authorize/',
+    'OAUTH2_SCOPES': None,
+    'SWAGGER_UI_SETTINGS': {
+        'deepLinking': True,
+        'filter': True,
+        'apisSorter': 'alpha',
+        'operationsSorter': 'alpha',
+        'tagsSorter': 'alpha',
+        'displayRequestDuration': True,
+        'syntaxHighlight.activate': True,
+        'syntaxHighlight.theme': 'monokai',
+    }
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
